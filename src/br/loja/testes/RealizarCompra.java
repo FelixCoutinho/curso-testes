@@ -15,7 +15,11 @@ public class RealizarCompra {
 		carrinhoDeComprasCliente1.getItens().add(new Item(macBookPro));
 		carrinhoDeComprasCliente1.getItens().add(new Item(iPhone6));
 		
+		Carrinho carrinhoDeComprasCliente2 = new Carrinho();
+		
 		System.out.println(carrinhoDeComprasCliente1.getTotal());
+		
+		System.out.println(carrinhoDeComprasCliente2.getTotal());
 	}
 
 }
