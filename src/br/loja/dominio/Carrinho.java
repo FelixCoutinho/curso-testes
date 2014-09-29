@@ -10,6 +10,7 @@ public class Carrinho {
 	}
 
 	private List<Item> itens;
+	private String cep;
 
 	public List<Item> getItens() {
 		return itens;
@@ -20,6 +21,10 @@ public class Carrinho {
 	}
 
 	public Double getTotal() {
+		return getSubTotal() + this.getValorFrete();
+	}
+
+	public Double getSubTotal() {
 		Double valorTotal = Double.valueOf(0);
 		for (Item item : itens) {
 			valorTotal += item.getProduto().getPreco() * item.getQuantidade();
@@ -27,7 +32,23 @@ public class Carrinho {
 		return valorTotal;
 	}
 
+	public Double getValorFrete() {
+		if (this.cep != null && this.cep != "") {
+			return this.getSubTotal() * Double.valueOf(0.10);
+		}
+		return Double.valueOf(0);
+	}
+
 	public Boolean isVazio() {
 		return itens.isEmpty();
 	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	
 }
