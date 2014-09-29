@@ -12,6 +12,15 @@ public class Carrinho {
 	private List<Item> itens;
 	private String cep;
 
+	public void adicionar(Item item) {
+		if (this.itens.contains(item)) {
+			Item itemExistente = this.itens.get(this.itens.indexOf(item));
+			itemExistente.setQuantidade(itemExistente.getQuantidade() + 1);
+		} else {
+			this.itens.add(item);
+		}
+	}
+
 	public List<Item> getItens() {
 		return itens;
 	}
@@ -50,5 +59,5 @@ public class Carrinho {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
+
 }
