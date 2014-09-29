@@ -25,7 +25,7 @@ public class RealizarCompra {
 
 		Assert.assertEquals(Double.valueOf(10999.97),
 				carrinhoDeComprasCliente1.getTotal());
-		Assert.assertTrue(carrinhoDeComprasCliente1.isVazio());
+		Assert.assertFalse(carrinhoDeComprasCliente1.isVazio());
 		Assert.assertEquals(Double.valueOf(0.0),
 				carrinhoDeComprasCliente2.getTotal());
 		Assert.assertTrue(carrinhoDeComprasCliente2.isVazio());
