@@ -20,7 +20,7 @@ public class Carrinho {
 	}
 
 	public Double getTotal() {
-		Double valorTotal = Double.MIN_VALUE;
+		Double valorTotal = Double.valueOf(0);
 		for (Item item : itens) {
 			valorTotal += item.getProduto().getPreco() * item.getQuantidade();
 		}

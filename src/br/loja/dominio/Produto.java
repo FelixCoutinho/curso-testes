@@ -10,6 +10,9 @@ public class Produto {
 
 	public Produto(String sku, Double preco) {
 		this.sku = sku;
+		if (Double.compare(preco, 0.0) < 0) {
+			throw new IllegalArgumentException("Não é permitido produtos com valores negativos.");
+		}
 		this.preco = preco;
 	}
 
