@@ -1,6 +1,7 @@
 package br.loja.testes;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import br.loja.dominio.Carrinho;
@@ -11,6 +12,7 @@ public class RealizarCompra {
 
 	@Test
 	public void testes() {
+		// 1 - Cenário
 		Produto iPhone6 = new Produto("PRD-0001", 2399.99);
 		Produto macBookPro = new Produto("PRD-0009", 7999.99);
 		Produto macMini = new Produto("PRD-0009", 599.99);
@@ -23,12 +25,15 @@ public class RealizarCompra {
 
 		Carrinho carrinhoDeComprasCliente2 = new Carrinho();
 
-		Assert.assertEquals(Double.valueOf(10999.97),
-				carrinhoDeComprasCliente1.getTotal());
-		Assert.assertFalse(carrinhoDeComprasCliente1.isVazio());
-		Assert.assertEquals(Double.valueOf(0.0),
-				carrinhoDeComprasCliente2.getTotal());
-		Assert.assertTrue(carrinhoDeComprasCliente2.isVazio());
+		// 2 - Ação
+		double totalEsperadoCarrinho1 = 10999.97;
+		double totalEsperadoCarrinho2 = 0.0;
+		double totalCarrinho1 = carrinhoDeComprasCliente1.getTotal();
+		double totalCarrinho2 = carrinhoDeComprasCliente2.getTotal();
+		
+		// 3 - Validação 
+		assertEquals(totalEsperadoCarrinho1, totalCarrinho1, 0.00001);
+		assertEquals(totalEsperadoCarrinho2, totalCarrinho2, 0.00001);
 	}
 
 }
