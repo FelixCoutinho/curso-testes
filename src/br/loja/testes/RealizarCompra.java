@@ -10,7 +10,7 @@ import br.loja.dominio.Produto;
 public class RealizarCompra {
 
 	@Test
-	public void main() {
+	public void testes() {
 		Produto iPhone6 = new Produto("PRD-0001", 2399.99);
 		Produto macBookPro = new Produto("PRD-0009", 7999.99);
 		Produto macMini = new Produto("PRD-0009", 599.99);
