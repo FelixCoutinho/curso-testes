@@ -25,7 +25,7 @@ public class Carrinho {
 	}
 
 	public Double getSubTotal() {
-		Double valorTotal = Double.valueOf(0);
+		Double valorTotal = 0.0;
 		for (Item item : itens) {
 			valorTotal += item.getProduto().getPreco() * item.getQuantidade();
 		}
@@ -34,9 +34,9 @@ public class Carrinho {
 
 	public Double getValorFrete() {
 		if (this.cep != null && this.cep != "") {
-			return this.getSubTotal() * Double.valueOf(0.10);
+			return this.getSubTotal() * 0.10;
 		}
-		return Double.valueOf(0);
+		return 0.0;
 	}
 
 	public Boolean isVazio() {
