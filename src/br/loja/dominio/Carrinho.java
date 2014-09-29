@@ -27,4 +27,7 @@ public class Carrinho {
 		return valorTotal;
 	}
 
+	public Boolean isVazio() {
+		return itens.isEmpty();
+	}
 }

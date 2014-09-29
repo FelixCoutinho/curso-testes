@@ -19,9 +19,10 @@ public class RealizarCompra {
 		
 		Carrinho carrinhoDeComprasCliente2 = new Carrinho();
 		
-		System.out.println(carrinhoDeComprasCliente1.getTotal());
-		
-		System.out.println(carrinhoDeComprasCliente2.getTotal());
+		System.out.println(carrinhoDeComprasCliente1.getTotal() == 10999.97 ? true : false);
+		System.out.println(carrinhoDeComprasCliente1.isVazio() == false ? true : false);
+		System.out.println(carrinhoDeComprasCliente2.getTotal() == 0.0 ? true : false);
+		System.out.println(carrinhoDeComprasCliente2.isVazio() == true ? true : false);
 	}
 
 }
