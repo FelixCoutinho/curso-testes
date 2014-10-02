@@ -1,10 +1,9 @@
 package br.loja.testes;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.hamcrest.Matchers.*;
 import org.junit.Test;
 
 import br.loja.dominio.Carrinho;
@@ -16,7 +15,6 @@ public class CarrinhoTest {
 
 	@Test
 	public void deveTotalizarCarrinho() {
-		// 1 - Cenário
 		Carrinho carrinho1 = CriadorDeCarrinho.umCarrinho().criar();
 
 		carrinho1.adicionar(CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(2399.99).criar())
@@ -25,17 +23,8 @@ public class CarrinhoTest {
 
 		Carrinho carrinho2 = CriadorDeCarrinho.umCarrinho().criar();
 
-		// 2 - Ação
-		double totalEsperadoCarrinho1 = 10999.97;
-		double totalEsperadoCarrinho2 = 0.0;
-		double totalCarrinho1 = carrinho1.getTotal();
-		double totalCarrinho2 = carrinho2.getTotal();
-
-		// 3 - Validação
-		Assert
-		
-		assertEquals(totalEsperadoCarrinho1, totalCarrinho1, 0.01);
-		assertEquals(totalEsperadoCarrinho2, totalCarrinho2, 0.01);
+		assertThat(carrinho1.getTotal(), equalTo(10999.97));
+		assertThat(carrinho2.getTotal(), equalTo(0.0));
 	}
 
 	@Test
