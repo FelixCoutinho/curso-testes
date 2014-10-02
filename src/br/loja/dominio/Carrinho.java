@@ -6,23 +6,28 @@ import java.util.List;
 public class Carrinho {
 
 	public Carrinho() {
-		this.itens = new ArrayList<Item>();
 	}
 
-	private List<Item> itens;
+	public Carrinho(String cep) {
+		this.cep = cep;
+	}
+
+	private List<Item> itens = new ArrayList<Item>();
 	private String cep;
 
-	public void adicionar(Item item) {
+	public Carrinho adicionar(Produto produto) {
+		Item item = new Item(produto);
 		if (this.itens.contains(item)) {
 			Item itemExistente = this.itens.get(this.itens.indexOf(item));
 			itemExistente.setQuantidade(itemExistente.getQuantidade() + 1);
 		} else {
 			this.itens.add(item);
 		}
+		return this;
 	}
 
 	public List<Item> getItens() {
-		if(this.itens == null || this.itens.size() == 0){
+		if (this.itens == null || this.itens.size() == 0) {
 			throw new RuntimeException("Seu carrinho está vazio!");
 		}
 		return itens;
