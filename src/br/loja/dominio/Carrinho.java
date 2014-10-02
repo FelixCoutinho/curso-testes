@@ -22,6 +22,9 @@ public class Carrinho {
 	}
 
 	public List<Item> getItens() {
+		if(this.itens == null || this.itens.size() == 0){
+			throw new RuntimeException("Seu carrinho está vazio!");
+		}
 		return itens;
 	}
 

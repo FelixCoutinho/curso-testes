@@ -99,7 +99,7 @@ public class CarrinhoTest {
 		carrinho.adicionar(new Item(new Produto("PRD-0001", 2399.99)));
 		assertEquals(1, carrinho.getItens().size());
 	}
-	
+
 	@Test
 	public void deveIncrementarQuantidadeEmProdutoRepetidos() {
 		Carrinho carrinho = new Carrinho();
@@ -108,6 +108,11 @@ public class CarrinhoTest {
 		carrinho.adicionar(new Item(new Produto("PRD-0001", 2399.99)));
 		assertEquals(new Integer(3), carrinho.getItens().get(0).getQuantidade());
 	}
-	
-	
+
+	@Test(expected = RuntimeException.class)
+	public void deveInformarQueCarrinhoEstaVazio() {
+		Carrinho carrinho = new Carrinho();
+		carrinho.getItens();
+	}
+
 }
