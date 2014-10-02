@@ -2,6 +2,9 @@ package br.loja.testes;
 
 import static org.junit.Assert.assertEquals;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.hamcrest.Matchers.*;
 import org.junit.Test;
 
 import br.loja.dominio.Carrinho;
@@ -29,6 +32,8 @@ public class CarrinhoTest {
 		double totalCarrinho2 = carrinho2.getTotal();
 
 		// 3 - Validação
+		Assert
+		
 		assertEquals(totalEsperadoCarrinho1, totalCarrinho1, 0.01);
 		assertEquals(totalEsperadoCarrinho2, totalCarrinho2, 0.01);
 	}
