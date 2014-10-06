@@ -1,7 +1,8 @@
 package br.loja.testes;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -123,6 +124,5 @@ public class CarrinhoTest {
 		assertEquals(Double.valueOf(2399.99), carrinho.getItens().get(1).getProduto().getPreco());
 		assertEquals(Double.valueOf(8399.99), carrinho.getItens().get(2).getProduto().getPreco());
 	}
-	
 	
 }
