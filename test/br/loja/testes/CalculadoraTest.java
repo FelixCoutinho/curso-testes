@@ -1,8 +1,7 @@
 package br.loja.testes;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -13,7 +12,7 @@ public class CalculadoraTest {
 
 	@Test
 	public void deveSomarUmMaisUm() {
-		assertThat(new Calculadora().soma(1, 1), is(Integer.valueOf(2)));
+		assertThat(new Calculadora().soma(1, 1), equalTo(Integer.valueOf(2)));
 	}
 
 	@Test
@@ -28,7 +27,7 @@ public class CalculadoraTest {
 
 	@Test(expected = RuntimeException.class)
 	public void naoDeveAceitarValoresNulos() {
-		assertThat(new Calculadora().soma(null, null), is(notNullValue()));
+		new Calculadora().soma(null, null);
 	}
 
 }
