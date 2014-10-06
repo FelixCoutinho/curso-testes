@@ -3,6 +3,7 @@ package br.loja.testes;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.isIn;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -14,6 +15,14 @@ import br.loja.testes.builders.CriadorDeCarrinho;
 import br.loja.testes.builders.CriadorDeProduto;
 
 public class CarrinhoTest {
+
+	@Test
+	public void deveAdicionarItemAoCarrinho() {
+		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(2399.99).criar();
+		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().criar();
+		carrinho.adicionar(produto);
+		assertThat(new Item(produto), isIn(carrinho.getItens()));
+	}
 
 	@Test
 	public void deveTotalizarCarrinho() {
@@ -113,7 +122,7 @@ public class CarrinhoTest {
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().comProduto(produto).criar();
 		assertThat(carrinho.getItens(), hasItems(new Item(produto)));
 	}
-	
+
 	@Test
 	public void deveEstarOrdenadoPorPrecoDoProduto() {
 		Carrinho carrinho = new Carrinho();
@@ -124,5 +133,5 @@ public class CarrinhoTest {
 		assertEquals(Double.valueOf(2399.99), carrinho.getItens().get(1).getProduto().getPreco());
 		assertEquals(Double.valueOf(8399.99), carrinho.getItens().get(2).getProduto().getPreco());
 	}
-	
+
 }
