@@ -112,4 +112,17 @@ public class CarrinhoTest {
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().comProduto(produto).criar();
 		assertThat(carrinho.getItens(), hasItems(new Item(produto)));
 	}
+	
+	@Test
+	public void deveEstarOrdenadoPorPrecoDoProduto() {
+		Carrinho carrinho = new Carrinho();
+		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
+		carrinho.adicionar(new Produto("PRD-0002", 399.99));
+		carrinho.adicionar(new Produto("PRD-0003", 8399.99));
+		assertEquals(Double.valueOf(399.99), carrinho.getItens().get(0).getProduto().getPreco());
+		assertEquals(Double.valueOf(2399.99), carrinho.getItens().get(1).getProduto().getPreco());
+		assertEquals(Double.valueOf(8399.99), carrinho.getItens().get(2).getProduto().getPreco());
+	}
+	
+	
 }

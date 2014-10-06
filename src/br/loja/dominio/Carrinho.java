@@ -40,7 +40,6 @@ public class Carrinho {
 		Collections.sort(itens, new Comparator<Item>() {
 			@Override
 			public int compare(Item item1, Item item2) {
-
 				return item1.getProduto().getPreco().compareTo(item2.getProduto().getPreco());
 			}
 		});
