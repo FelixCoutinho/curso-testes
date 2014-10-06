@@ -1,17 +1,20 @@
 package br.loja.testes.builders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.loja.dominio.Carrinho;
+import br.loja.dominio.Item;
 import br.loja.dominio.Produto;
 
 public class CriadorDeCarrinho {
-
+	
 	private String cep;
-	
-	private List<Produto> produtos;
-	
+
+	private List<Item> itens;
+
 	public CriadorDeCarrinho() {
+		this.itens = new ArrayList<Item>();
 	}
 
 	public static CriadorDeCarrinho umCarrinho() {
@@ -22,13 +25,13 @@ public class CriadorDeCarrinho {
 		this.cep = cep;
 		return this;
 	}
-	
-	public CriadorDeCarrinho comProduto(Produto produto){
-		this.produtos.add(produto);
+
+	public CriadorDeCarrinho comProduto(Produto produto) {
+		this.itens.add(new Item(produto));
 		return this;
 	}
 
 	public Carrinho criar() {
-		return new Carrinho(cep);
+		return new Carrinho(itens, cep);
 	}
 }

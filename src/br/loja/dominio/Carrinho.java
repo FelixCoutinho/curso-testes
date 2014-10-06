@@ -1,6 +1,8 @@
 package br.loja.dominio;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Carrinho {
@@ -9,6 +11,11 @@ public class Carrinho {
 	}
 
 	public Carrinho(String cep) {
+		this.cep = cep;
+	}
+
+	public Carrinho(List<Item> itens, String cep) {
+		this.itens = itens;
 		this.cep = cep;
 	}
 
@@ -30,6 +37,13 @@ public class Carrinho {
 		if (this.itens == null || this.itens.size() == 0) {
 			throw new RuntimeException("Seu carrinho está vazio!");
 		}
+		Collections.sort(itens, new Comparator<Item>() {
+			@Override
+			public int compare(Item item1, Item item2) {
+
+				return item1.getProduto().getPreco().compareTo(item2.getProduto().getPreco());
+			}
+		});
 		return itens;
 	}
 
