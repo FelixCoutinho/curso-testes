@@ -1,6 +1,7 @@
 package br.loja.testes;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.isIn;
@@ -129,9 +130,10 @@ public class CarrinhoTest {
 		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
 		carrinho.adicionar(new Produto("PRD-0002", 399.99));
 		carrinho.adicionar(new Produto("PRD-0003", 8399.99));
-		assertEquals(Double.valueOf(399.99), carrinho.getItens().get(0).getProduto().getPreco());
-		assertEquals(Double.valueOf(2399.99), carrinho.getItens().get(1).getProduto().getPreco());
-		assertEquals(Double.valueOf(8399.99), carrinho.getItens().get(2).getProduto().getPreco());
+		assertThat(
+				carrinho.getItens(),
+				contains(new Item(new Produto("PRD-0002", 399.99)), new Item(new Produto("PRD-0001", 2399.99)),
+						new Item(new Produto("PRD-0003", 8399.99))));
 	}
 
 }
