@@ -13,7 +13,6 @@ public class AssumeTest {
 	@Before
 	public void setUp() throws UnknownHostException {
 		InetAddress localHost = InetAddress.getLocalHost();
-		System.out.println(localHost.getHostAddress());
 		assumeTrue(localHost.getHostAddress().equals("127.0.1.1"));
 	}
 
