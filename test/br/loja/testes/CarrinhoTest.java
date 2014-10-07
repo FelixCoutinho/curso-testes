@@ -16,7 +16,7 @@ import br.loja.testes.builders.CriadorDeCarrinho;
 import br.loja.testes.builders.CriadorDeProduto;
 
 public class CarrinhoTest {
-
+	
 	@Test
 	public void deveAdicionarItemAoCarrinho() {
 		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(2399.99).criar();
