@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AssumeTest {
+public class LocalhostTest {
 
 	@Before
 	public void setUp() throws UnknownHostException {
