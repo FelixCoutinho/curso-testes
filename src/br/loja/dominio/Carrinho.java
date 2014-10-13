@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Carrinho {
+	
+	private TipoPagamento tipoPagamento;
 
 	public Carrinho() {
 	}
@@ -79,6 +81,14 @@ public class Carrinho {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public TipoPagamento getTipoPagamento() {
+		return tipoPagamento;
+	}
+
+	public void setTipoPagamento(TipoPagamento tipoPagamento) {
+		this.tipoPagamento = tipoPagamento;
 	}
 
 }
