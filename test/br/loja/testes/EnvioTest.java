@@ -7,14 +7,14 @@ import br.loja.dominio.Produto;
 import br.loja.service.FinalizadorDeCompras;
 import br.loja.service.FinalizadorDeComprasPadrao;
 import br.loja.service.ProcessadorDePagamentoPadrao;
-import br.loja.service.TransportadoraLigeirinhoService;
 import br.loja.testes.builders.CriadorDeCarrinho;
 import br.loja.testes.builders.CriadorDeProduto;
+import br.loja.testes.stubs.TransportadoraStub;
 
 public class EnvioTest {
 
-	private FinalizadorDeCompras finalizadorDeCompras = new FinalizadorDeComprasPadrao(
-			new TransportadoraLigeirinhoService(), new ProcessadorDePagamentoPadrao());
+	private FinalizadorDeCompras finalizadorDeCompras = new FinalizadorDeComprasPadrao(new TransportadoraStub(),
+			new ProcessadorDePagamentoPadrao());
 
 	@Test
 	public void deveEnviarUmaCompra() {
