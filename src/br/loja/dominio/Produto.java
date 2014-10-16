@@ -10,23 +10,21 @@ public class Produto {
 
 	private BigDecimal preco;
 
-	public Produto(String sku, String descricao, Double preco) {
+	public Produto(String sku, String descricao, BigDecimal preco) {
 		this.sku = sku;
 		this.descricao = descricao;
-		if (Double.compare(preco, 0.0) < 0) {
-			throw new IllegalArgumentException(
-					"Não é permitido produtos com valores negativos.");
+		if (preco.compareTo(BigDecimal.valueOf(0.0)) < 0) {
+			throw new IllegalArgumentException("Não é permitido produtos com valores negativos.");
 		}
-		this.preco = BigDecimal.valueOf(preco);
+		this.preco = preco;
 	}
 
-	public Produto(String sku, Double preco) {
+	public Produto(String sku, BigDecimal preco) {
 		this.sku = sku;
-		if (Double.compare(preco, 0.0) < 0) {
-			throw new IllegalArgumentException(
-					"Não é permitido produtos com valores negativos.");
+		if (preco.compareTo(BigDecimal.valueOf(0.0)) < 0) {
+			throw new IllegalArgumentException("Não é permitido produtos com valores negativos.");
 		}
-		this.preco = BigDecimal.valueOf(preco);
+		this.preco = preco;
 	}
 
 	public String getSku() {
@@ -49,14 +47,10 @@ public class Produto {
 		return preco;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = BigDecimal.valueOf(preco);
-	}
-	
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

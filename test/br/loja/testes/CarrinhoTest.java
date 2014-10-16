@@ -7,6 +7,8 @@ import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.isIn;
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import br.loja.dominio.Carrinho;
@@ -16,10 +18,10 @@ import br.loja.testes.builders.CriadorDeCarrinho;
 import br.loja.testes.builders.CriadorDeProduto;
 
 public class CarrinhoTest {
-	
+
 	@Test
 	public void deveAdicionarItemAoCarrinho() {
-		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(2399.99).criar();
+		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(BigDecimal.valueOf(2399.99)).criar();
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().criar();
 		carrinho.adicionar(produto);
 		assertThat(new Item(produto), isIn(carrinho.getItens()));
@@ -29,9 +31,12 @@ public class CarrinhoTest {
 	public void deveTotalizarCarrinho() {
 		Carrinho carrinho1 = CriadorDeCarrinho.umCarrinho().criar();
 
-		carrinho1.adicionar(CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(2399.99).criar())
-				.adicionar(CriadorDeProduto.umProduto().comSKU("PRD-0009").comPreco(7999.99).criar())
-				.adicionar(CriadorDeProduto.umProduto().comSKU("PRD-0008").comPreco(599.99).criar());
+		carrinho1
+				.adicionar(
+						CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(BigDecimal.valueOf(2399.99)).criar())
+				.adicionar(
+						CriadorDeProduto.umProduto().comSKU("PRD-0009").comPreco(BigDecimal.valueOf(7999.99)).criar())
+				.adicionar(CriadorDeProduto.umProduto().comSKU("PRD-0008").comPreco(BigDecimal.valueOf(599.99)).criar());
 
 		Carrinho carrinho2 = CriadorDeCarrinho.umCarrinho().criar();
 
@@ -41,7 +46,7 @@ public class CarrinhoTest {
 
 	@Test
 	public void deveTotalizarCarrinhoComApenasUmItem() {
-		Produto macMini = new Produto("PRD-0009", 599.99);
+		Produto macMini = new Produto("PRD-0009", BigDecimal.valueOf(599.99));
 
 		Carrinho carrinho = new Carrinho();
 
@@ -55,7 +60,7 @@ public class CarrinhoTest {
 
 	@Test
 	public void deveCalcularValorDoFrete() {
-		Produto macMini = new Produto("PRD-0009", 599.99);
+		Produto macMini = new Produto("PRD-0009", BigDecimal.valueOf(599.99));
 
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().comCep("60320-270").criar();
 		carrinho.adicionar(macMini);
@@ -65,9 +70,9 @@ public class CarrinhoTest {
 
 	@Test
 	public void deveCalcularValorDoFreteParaMultiplosProdutos() {
-		Produto iPhone6 = new Produto("PRD-0001", 2399.99);
-		Produto macBookPro = new Produto("PRD-0009", 7999.99);
-		Produto macMini = new Produto("PRD-0004", 599.99);
+		Produto iPhone6 = new Produto("PRD-0001", BigDecimal.valueOf(2399.99));
+		Produto macBookPro = new Produto("PRD-0009", BigDecimal.valueOf(7999.99));
+		Produto macMini = new Produto("PRD-0004", BigDecimal.valueOf(599.99));
 
 		Carrinho carrinho = new Carrinho();
 		carrinho.setCep("60320-270");
@@ -80,9 +85,9 @@ public class CarrinhoTest {
 
 	@Test
 	public void deveIncluirValorDoFreteNoTotal() {
-		Produto iPhone6 = new Produto("PRD-0001", 2399.99);
-		Produto macBookPro = new Produto("PRD-0009", 7999.99);
-		Produto macMini = new Produto("PRD-0008", 599.99);
+		Produto iPhone6 = new Produto("PRD-0001", BigDecimal.valueOf(2399.99));
+		Produto macBookPro = new Produto("PRD-0009", BigDecimal.valueOf(7999.99));
+		Produto macMini = new Produto("PRD-0008", BigDecimal.valueOf(599.99));
 
 		Carrinho carrinho = new Carrinho();
 		carrinho.setCep("60320-270");
@@ -96,18 +101,18 @@ public class CarrinhoTest {
 	@Test
 	public void naoDevemHaverProdutosRepetidos() {
 		Carrinho carrinho = new Carrinho();
-		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
-		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
-		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
+		carrinho.adicionar(new Produto("PRD-0001", BigDecimal.valueOf(2399.99)));
+		carrinho.adicionar(new Produto("PRD-0001", BigDecimal.valueOf(2399.99)));
+		carrinho.adicionar(new Produto("PRD-0001", BigDecimal.valueOf(2399.99)));
 		assertEquals(1, carrinho.getItens().size());
 	}
 
 	@Test
 	public void deveIncrementarQuantidadeEmProdutoRepetidos() {
 		Carrinho carrinho = new Carrinho();
-		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
-		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
-		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
+		carrinho.adicionar(new Produto("PRD-0001", BigDecimal.valueOf(2399.99)));
+		carrinho.adicionar(new Produto("PRD-0001", BigDecimal.valueOf(2399.99)));
+		carrinho.adicionar(new Produto("PRD-0001", BigDecimal.valueOf(2399.99)));
 		assertEquals(new Integer(3), carrinho.getItens().get(0).getQuantidade());
 	}
 
@@ -119,7 +124,7 @@ public class CarrinhoTest {
 
 	@Test
 	public void deveriaAdicionarProdutoNoCarrinho() {
-		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(2399.99).criar();
+		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(BigDecimal.valueOf(2399.99)).criar();
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().comProduto(produto).criar();
 		assertThat(carrinho.getItens(), hasItems(new Item(produto)));
 	}
@@ -127,13 +132,14 @@ public class CarrinhoTest {
 	@Test
 	public void deveEstarOrdenadoPorPrecoDoProduto() {
 		Carrinho carrinho = new Carrinho();
-		carrinho.adicionar(new Produto("PRD-0001", 2399.99));
-		carrinho.adicionar(new Produto("PRD-0002", 399.99));
-		carrinho.adicionar(new Produto("PRD-0003", 8399.99));
+		carrinho.adicionar(new Produto("PRD-0001", BigDecimal.valueOf(2399.99)));
+		carrinho.adicionar(new Produto("PRD-0002", BigDecimal.valueOf(399.99)));
+		carrinho.adicionar(new Produto("PRD-0003", BigDecimal.valueOf(8399.99)));
 		assertThat(
 				carrinho.getItens(),
-				contains(new Item(new Produto("PRD-0002", 399.99)), new Item(new Produto("PRD-0001", 2399.99)),
-						new Item(new Produto("PRD-0003", 8399.99))));
+				contains(new Item(new Produto("PRD-0002", BigDecimal.valueOf(399.99))), new Item(new Produto(
+						"PRD-0001", BigDecimal.valueOf(2399.99))),
+						new Item(new Produto("PRD-0003", BigDecimal.valueOf(8399.99)))));
 	}
 
 }

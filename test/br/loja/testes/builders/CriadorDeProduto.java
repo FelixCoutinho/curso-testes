@@ -1,11 +1,13 @@
 package br.loja.testes.builders;
 
+import java.math.BigDecimal;
+
 import br.loja.dominio.Produto;
 
 public class CriadorDeProduto {
 
 	private String descricao;
-	private Double preco;
+	private BigDecimal preco;
 	private String sku;
 
 	public CriadorDeProduto() {
@@ -25,7 +27,7 @@ public class CriadorDeProduto {
 		return this;
 	}
 
-	public CriadorDeProduto comPreco(Double preco) {
+	public CriadorDeProduto comPreco(BigDecimal preco) {
 		this.preco = preco;
 		return this;
 	}

@@ -1,5 +1,7 @@
 package br.loja.testes;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import br.loja.dominio.Carrinho;
@@ -18,7 +20,7 @@ public class EnvioTest {
 
 	@Test
 	public void deveEnviarUmaCompra() {
-		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(2399.99).criar();
+		Produto produto = CriadorDeProduto.umProduto().comSKU("PRD-0001").comPreco(BigDecimal.valueOf(2399.99)).criar();
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().criar();
 		carrinho.adicionar(produto);
 		this.finalizadorDeCompras.finalizarCompra(carrinho);
