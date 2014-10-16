@@ -5,50 +5,51 @@ import java.util.List;
 
 public class Carrinho {
 
-	public Carrinho() {
-		this.itens = new ArrayList<Item>();
-	}
-
-	private List<Item> itens;
-	private String cep;
+	private List<Item> itens = new ArrayList<Item>();
 
 	public List<Item> getItens() {
-		return itens;
-	}
+		return new ArrayList<Item>(this.itens) {
+			private static final long serialVersionUID = 7936326982947661776L;
 
-	public void setItens(List<Item> itens) {
-		this.itens = itens;
-	}
-
-	public Double getTotal() {
-		return getSubTotal() + this.getValorFrete();
+			@Override
+			public boolean add(Item item) {
+				throw new RuntimeException(
+						"Não é permitido adicionar itens dessa forma.");
+			}
+		};
 	}
 
 	public Double getSubTotal() {
-		Double valorTotal = Double.valueOf(0);
+		Double valorTotal = 0.0D;
 		for (Item item : itens) {
 			valorTotal += item.getProduto().getPreco() * item.getQuantidade();
 		}
 		return valorTotal;
 	}
 
-	public Double getValorFrete() {
-		if (this.cep != null && this.cep != "") {
-			return this.getSubTotal() * Double.valueOf(0.10);
+	public Double getTotalValorFrete() {
+		Double valorTotal = 0.0D;
+		for (Item item : itens) {
+			valorTotal += item.getProduto().getValorFrete()
+					* item.getQuantidade();
 		}
-		return Double.valueOf(0);
+		return valorTotal;
 	}
 
-	public Boolean isVazio() {
-		return itens.isEmpty();
+	public Double getTotal() {
+		return this.getSubTotal() + this.getTotalValorFrete();
 	}
 
-	public String getCep() {
-		return cep;
+	public void adicionarProduto(Produto produto) {
+		if (this.itens.contains(new Item(produto))) {
+			this.itens.get(this.itens.indexOf(new Item(produto)))
+					.setQuantidade(
+							this.itens.get(
+									this.itens.indexOf(new Item(produto)))
+									.getQuantidade() + 1);
+		} else {
+			this.itens.add(new Item(produto));
+		}
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	
 }
