@@ -12,12 +12,12 @@ import br.loja.dominio.Produto;
 import br.loja.utilidades.FormatadorDeMoeda;
 
 public class ProdutoTest {
-	
+
 	private static final Locale localeOriginal = Locale.getDefault();
 
 	@Before
 	public void setup() {
-		Locale.setDefault(new Locale("pt", "BR"));
+		Locale.setDefault(new Locale("en", "US"));
 	}
 
 	@After
@@ -32,6 +32,7 @@ public class ProdutoTest {
 
 	@Test
 	public void deveriaFormatarPrecoComPadraoBrasileiro() {
-		assertEquals("A formatação do preço não corresponde com o padrão pt-BR.", "R$ 19,99",  FormatadorDeMoeda.formatar(new Produto("PRD-0001", 19.99).getPreco()).toString());
+		assertEquals("A formatação do preço não corresponde com o padrão pt-BR.", "R$ 19,99", FormatadorDeMoeda
+				.formatar(new Produto("PRD-0001", 19.99).getPreco()).toString());
 	}
 }
