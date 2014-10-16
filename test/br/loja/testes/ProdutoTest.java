@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.loja.dominio.Produto;
+import br.loja.utilidades.FormatadorDeMoeda;
 
 public class ProdutoTest {
 	
@@ -31,6 +32,6 @@ public class ProdutoTest {
 
 	@Test
 	public void deveriaFormatarPrecoComPadraoBrasileiro() {
-		assertEquals("A formatação do preço não corresponde com o padrão pt-BR.", "19,99",  new Produto("PRD-0001", 19.99).getPreco().toString());
+		assertEquals("A formatação do preço não corresponde com o padrão pt-BR.", "R$ 19,99",  FormatadorDeMoeda.formatar(new Produto("PRD-0001", 19.99).getPreco()).toString());
 	}
 }
