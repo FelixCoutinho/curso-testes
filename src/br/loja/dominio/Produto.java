@@ -1,12 +1,14 @@
 package br.loja.dominio;
 
+import java.math.BigDecimal;
+
 public class Produto {
 
 	private String sku;
 
 	private String descricao;
 
-	private Double preco;
+	private BigDecimal preco;
 
 	public Produto(String sku, String descricao, Double preco) {
 		this.sku = sku;
@@ -15,7 +17,7 @@ public class Produto {
 			throw new IllegalArgumentException(
 					"Não é permitido produtos com valores negativos.");
 		}
-		this.preco = preco;
+		this.preco = BigDecimal.valueOf(preco);
 	}
 
 	public Produto(String sku, Double preco) {
@@ -24,7 +26,7 @@ public class Produto {
 			throw new IllegalArgumentException(
 					"Não é permitido produtos com valores negativos.");
 		}
-		this.preco = preco;
+		this.preco = BigDecimal.valueOf(preco);
 	}
 
 	public String getSku() {
@@ -43,14 +45,18 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Double getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
 	public void setPreco(Double preco) {
+		this.preco = BigDecimal.valueOf(preco);
+	}
+	
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

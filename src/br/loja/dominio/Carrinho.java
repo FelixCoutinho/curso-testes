@@ -59,7 +59,7 @@ public class Carrinho {
 	public Double getSubTotal() {
 		Double valorTotal = 0.0;
 		for (Item item : itens) {
-			valorTotal += item.getProduto().getPreco() * item.getQuantidade();
+			valorTotal += item.getProduto().getPreco().doubleValue() * item.getQuantidade();
 		}
 		return valorTotal;
 	}
