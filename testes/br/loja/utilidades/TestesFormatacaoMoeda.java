@@ -2,30 +2,21 @@ package br.loja.utilidades;
 
 import java.util.Locale;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import br.loja.dominio.Produto;
+import br.loja.utilidades.rules.LocaleRule;
 
 public class TestesFormatacaoMoeda {
 
-	private static final Locale localeOriginal = Locale.getDefault();
-
-	@Before
-	public void setUp() {
-		Locale.setDefault(new Locale("en", "US"));
-	}
-
-	@After
-	public void down() {
-		Locale.setDefault(localeOriginal);
-	}
+	@Rule  
+    public LocaleRule locale = new LocaleRule(new Locale("pt", "BR"));  
 
 	@Test
 	public void test() {
-		Assert.assertEquals("A formataÁ„o do preÁo n„o est· correta.",
+		Assert.assertEquals("A formata√ß√£o do pre√ßo n√£o est√° correta.",
 				"R$ 99,00", new Produto("PRD-001", 99.00).getPrecoFormatado());
 	}
 

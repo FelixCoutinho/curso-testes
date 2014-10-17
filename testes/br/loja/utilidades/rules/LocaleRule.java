@@ -20,7 +20,7 @@ public class LocaleRule implements TestRule {
         return new Statement() {  
             @Override  
             public void evaluate() throws Throwable {  
-                Locale.setDefault(locale); // altera o locale padr„o  
+                Locale.setDefault(locale); // altera o locale padr√£o
                 try {  
                     base.evaluate(); // executa o teste  
                 } finally {  
