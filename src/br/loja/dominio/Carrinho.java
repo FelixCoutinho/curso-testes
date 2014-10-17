@@ -14,7 +14,7 @@ public class Carrinho {
 			@Override
 			public boolean add(Item item) {
 				throw new RuntimeException(
-						"Não é permitido adicionar itens dessa forma.");
+						"NÃ£o Ã© permitido adicionar itens dessa forma.");
 			}
 		};
 	}
