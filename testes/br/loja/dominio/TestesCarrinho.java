@@ -1,6 +1,5 @@
 package br.loja.dominio;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
