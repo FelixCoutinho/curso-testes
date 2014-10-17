@@ -1,5 +1,6 @@
 package br.loja.utilidades;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 import org.junit.Assert;
@@ -17,7 +18,7 @@ public class TestesFormatacaoMoeda {
 	@Test
 	public void test() {
 		Assert.assertEquals("A formatação do preço não está correta.",
-				"R$ 99,00", new Produto("PRD-001", 99.00).getPrecoFormatado());
+				"R$ 99,00", new Produto("PRD-001", BigDecimal.valueOf(99.00)).getPrecoFormatado());
 	}
 
 }

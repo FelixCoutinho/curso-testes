@@ -1,10 +1,12 @@
 package br.loja.dominio.databuilders;
 
+import java.math.BigDecimal;
+
 import br.loja.dominio.Produto;
 
 public class CriadorDeProduto {
 
-	private Double preco = 0.01;
+	private BigDecimal preco = BigDecimal.valueOf(0.01);
 	private String sku = "PRD-0000";
 
 	private CriadorDeProduto() {
@@ -19,7 +21,7 @@ public class CriadorDeProduto {
 		return this;
 	}
 
-	public CriadorDeProduto comPreco(Double preco) {
+	public CriadorDeProduto comPreco(BigDecimal preco) {
 		this.preco = preco;
 		return this;
 	}

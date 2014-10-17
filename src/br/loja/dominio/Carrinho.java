@@ -1,5 +1,6 @@
 package br.loja.dominio;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,24 +20,24 @@ public class Carrinho {
 		};
 	}
 
-	public Double getSubTotal() {
-		Double valorTotal = 0.0D;
+	public BigDecimal getSubTotal() {
+		BigDecimal valorTotal = BigDecimal.valueOf(0.0);
 		for (Item item : itens) {
-			valorTotal += item.getProduto().getPreco() * item.getQuantidade();
+			valorTotal = valorTotal.add(item.getProduto().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade())));
 		}
 		return valorTotal;
 	}
 
-	public Double getTotalValorFrete() {
-		Double valorTotal = 0.0D;
+	public BigDecimal getTotalValorFrete() {
+		BigDecimal valorTotal = BigDecimal.valueOf(0.0);
 		for (Item item : itens) {
-			valorTotal += item.getProduto().getValorFrete() * item.getQuantidade();
+			valorTotal = valorTotal.add(item.getProduto().getValorFrete().multiply(BigDecimal.valueOf(item.getQuantidade())));
 		}
 		return valorTotal;
 	}
 
-	public Double getTotal() {
-		return this.getSubTotal() + this.getTotalValorFrete();
+	public BigDecimal getTotal() {
+		return this.getSubTotal().add(this.getTotalValorFrete());
 	}
 
 	public void adicionarProduto(Produto produto) {

@@ -1,5 +1,6 @@
 package br.loja.dominio;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 public class Produto {
@@ -8,11 +9,11 @@ public class Produto {
 
 	private String descricao;
 
-	private Double preco;
+	private BigDecimal preco;
 
-	private Double percentualFrete = 0.10;
+	private BigDecimal percentualFrete = BigDecimal.valueOf(0.10);
 
-	public Produto(String sku, Double preco) {
+	public Produto(String sku, BigDecimal preco) {
 		this.setSku(sku);
 		this.setPreco(preco);
 	}
@@ -33,7 +34,7 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Double getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 	
@@ -41,23 +42,23 @@ public class Produto {
 		return new DecimalFormat("R$ 0.00").format(preco);
 	}
 
-	public void setPreco(Double preco) {
-		if (preco < 0) {
+	public void setPreco(BigDecimal preco) {
+		if (preco.compareTo(BigDecimal.valueOf(0)) < 0) {
 			throw new IllegalArgumentException();
 		}
 		this.preco = preco;
 	}
 
-	public Double getPercentualFrete() {
+	public BigDecimal getPercentualFrete() {
 		return percentualFrete;
 	}
 
-	public void setPercentualFrete(Double percentualFrete) {
+	public void setPercentualFrete(BigDecimal percentualFrete) {
 		this.percentualFrete = percentualFrete;
 	}
 
-	public Double getValorFrete(){
-		return preco * percentualFrete;
+	public BigDecimal getValorFrete(){
+		return preco.multiply(percentualFrete);
 	}
 
 	@Override
