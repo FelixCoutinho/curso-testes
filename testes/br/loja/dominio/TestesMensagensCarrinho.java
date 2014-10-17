@@ -1,5 +1,7 @@
 package br.loja.dominio;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -15,9 +17,17 @@ public class TestesMensagensCarrinho {
 	@Test
 	public void deveriaNaoPermitirAdicionarItemDiretamenteAoCarrinho() {
 		thrown.expect(RuntimeException.class);
-	    thrown.expectMessage("Não é permitido adicionar itens dessa forma.");
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().criar();
-		carrinho.getItens().add(new Item(CriadorDeProduto.umProduto().criar()));		
+		carrinho.getItens().add(new Item(CriadorDeProduto.umProduto().criar()));
+		assertEquals("", Integer.valueOf(0), Integer.valueOf(carrinho.getItens().size()));
+	}
+
+	@Test
+	public void deveriaAvisarSobreNaoPermitirAdicionarItemDiretamenteAoCarrinho() {
+		thrown.expect(RuntimeException.class);
+		thrown.expectMessage("Não é permitido adicionar itens dessa forma.");
+		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().criar();
+		carrinho.getItens().add(new Item(CriadorDeProduto.umProduto().criar()));
 	}
 
 }
