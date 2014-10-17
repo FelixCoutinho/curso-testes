@@ -1,5 +1,6 @@
 package br.loja.dominio;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
@@ -103,4 +104,5 @@ public class TestesCarrinho {
 		Carrinho carrinho = CriadorDeCarrinho.umCarrinho().comProduto(CriadorDeProduto.umProduto().criar()).criar();
 		assertEquals("", Integer.valueOf(1), Integer.valueOf(carrinho.getItens().size()));
 	}
+	
 }
