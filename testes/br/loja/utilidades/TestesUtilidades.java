@@ -4,8 +4,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import br.loja.dominio.TestesPedido;
+
 @RunWith(Suite.class)
-@SuiteClasses({ TestesCalculadora.class, TestesFormatacaoMoeda.class })
+@SuiteClasses({ TestesCalculadora.class, TestesFormatacaoMoeda.class, TestesListaOrdenada.class,
+		TestesFormatacaoMoedaComAsumption.class })
 public class TestesUtilidades {
 
 }
