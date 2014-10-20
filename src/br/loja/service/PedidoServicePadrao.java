@@ -1,8 +1,8 @@
 package br.loja.service;
 
-import br.loja.dominio.Carrinho;
 import br.loja.dominio.Pagamento;
 import br.loja.dominio.Pedido;
+import br.loja.exceptions.PagamentoNaoAutorizadoException;
 
 public class PedidoServicePadrao implements PedidoService {
 
@@ -16,12 +16,13 @@ public class PedidoServicePadrao implements PedidoService {
 	}
 
 	@Override
-	public Pedido efetuarPedido(Carrinho carrinho) {
-		Pedido pedido = new Pedido(carrinho);
+	public Pedido efetuarPedido(Pedido pedido) throws PagamentoNaoAutorizadoException {
 		Pagamento pagamento = this.pagamentoService.pagar(pedido);
-		if(pagamento.isAutorizado()){
+		if (pagamento.isAutorizado()) {
 			pedido = this.entregaService.solicitarEntrega(pedido);
-		}		
+		} else {
+			throw new PagamentoNaoAutorizadoException("Desculpe, seu pagamento não foi autorizado.");
+		}
 		return pedido;
 	}
 
