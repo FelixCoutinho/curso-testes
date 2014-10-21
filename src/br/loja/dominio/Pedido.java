@@ -6,6 +6,8 @@ import java.util.List;
 public class Pedido {
 
 	private List<ItemPedido> itens;
+	
+	private Pagamento pagamento;
 
 	private String uidCorreios;
 
@@ -31,4 +33,12 @@ public class Pedido {
 		this.uidCorreios = uidCorreios;
 	}
 
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+	
 }

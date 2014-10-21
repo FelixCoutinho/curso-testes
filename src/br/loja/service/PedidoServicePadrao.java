@@ -19,6 +19,7 @@ public class PedidoServicePadrao implements PedidoService {
 	public Pedido efetuarPedido(Pedido pedido) throws PagamentoNaoAutorizadoException {
 		Pagamento pagamento = this.pagamentoService.pagar(pedido);
 		if (pagamento.isAutorizado()) {
+			pedido.setPagamento(pagamento);
 			pedido = this.entregaService.solicitarEntrega(pedido);
 		} else {
 			throw new PagamentoNaoAutorizadoException("Desculpe, seu pagamento não foi autorizado.");
