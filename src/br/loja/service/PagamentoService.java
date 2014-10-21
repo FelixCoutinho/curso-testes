@@ -1,10 +1,10 @@
 package br.loja.service;
 
-import br.loja.dominio.Pagamento;
 import br.loja.dominio.Pedido;
+import br.loja.exceptions.PagamentoNaoAutorizadoException;
 
 public interface PagamentoService {
 	
-	Pagamento pagar(Pedido pedido);
+	void pagar(Pedido pedido) throws PagamentoNaoAutorizadoException;
 
 }

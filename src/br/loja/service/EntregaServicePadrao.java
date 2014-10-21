@@ -5,8 +5,7 @@ import br.loja.dominio.Pedido;
 public class EntregaServicePadrao implements EntregaService {
 
 	@Override
-	public Pedido solicitarEntrega(Pedido pedido) {
-		return null;
+	public void solicitarEntrega(Pedido pedido) {
 	}
 
 	@Override
