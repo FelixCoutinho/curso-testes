@@ -56,7 +56,7 @@ public class TestesPagamentoPadrao {
 		this.pagamentoService.pagar(pedido);
 
 		ArgumentCaptor<Pagamento> pagamento = ArgumentCaptor.forClass(Pagamento.class);
-		
+
 		verify(this.repositorioPagamentos).salvar(pagamento.capture());
 		verify(this.gatewayPagamentoService).processarPagamento(any(BigDecimal.class), any(Integer.class),
 				any(String.class));
