@@ -38,7 +38,7 @@ public abstract class AbstractDbUnitTestCase {
 		connection.getConfig().setProperty(DatabaseConfig.FEATURE_CASE_SENSITIVE_TABLE_NAMES, true);
 		
 		FlatXmlDataSetBuilder flatXmlDataSetBuilder = new FlatXmlDataSetBuilder();
-		InputStream dataSet = Thread.currentThread().getContextClassLoader().getResourceAsStream("dados.xml");
+		InputStream dataSet = Thread.currentThread().getContextClassLoader().getResourceAsStream("dados.xml");	
 		dataset = flatXmlDataSetBuilder.build(dataSet);
 	}
 
