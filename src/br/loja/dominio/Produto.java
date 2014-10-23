@@ -3,12 +3,29 @@ package br.loja.dominio;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-public class Produto {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "produtos")
+public class Produto {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_produto")
+	private Integer id;
+
+	@Column(name = "sku")
 	private String sku;
 
+	@Column(name = "descricao")
 	private String descricao;
 
+	@Column(name = "preco")
 	private BigDecimal preco;
 
 	private BigDecimal percentualFrete = BigDecimal.valueOf(0.10);

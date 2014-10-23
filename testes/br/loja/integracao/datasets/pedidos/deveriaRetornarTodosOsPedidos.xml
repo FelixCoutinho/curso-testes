@@ -1,0 +1,7 @@
+<dataset>
+	<produtos id_produto="1" sku="prd-0001" preco="50.00" descricao="produto 1"/>
+	<produtos id_produto="2" sku="prd-0002" preco="550.00" descricao="produto 2" />
+	<pedidos id_pedido="1" />
+	<itens_pedido id_item_pedido="1" id_pedido="1" quantidade="1" id_produto="1" />
+	<itens_pedido id_item_pedido="2" id_pedido="1" quantidade="1" id_produto="2" />
+</dataset>
