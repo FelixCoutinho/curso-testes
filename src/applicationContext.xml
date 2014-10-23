@@ -15,7 +15,7 @@
 	<context:component-scan base-package="br.loja" />
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" depends-on="flyway">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="br.loja" />
 		<property name="hibernateProperties">
@@ -49,6 +49,13 @@
 
 	<bean name="databaseTester" class="org.dbunit.DataSourceDatabaseTester">
 		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<bean id="flyway" class="com.googlecode.flyway.core.Flyway"
+		init-method="migrate" lazy-init="false" depends-on="dataSource">
+		<property name="dataSource" ref="dataSource" />
+		<property name="locations" value="classpath:/META-INF/migrations" />
+		<property name="initOnMigrate" value="true" />
 	</bean>
 
 </beans>
