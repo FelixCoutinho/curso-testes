@@ -2,9 +2,7 @@ package br.loja.integracao.pedido;
 
 import org.junit.Test;
 
-import br.loja.integracao.dbunit.AbstractDbUnitTestCase;
-
-public class TestesIntegradosPagamento extends AbstractDbUnitTestCase {
+public class TestesIntegradosPagamento {
 
 	@Test
 	public void deveriaEncontrarUmPagamento() {
