@@ -1,4 +1,4 @@
-package br.loja.testes;
+package br.loja.utilidades;
 
 import static org.junit.Assume.assumeTrue;
 

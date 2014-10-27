@@ -1,4 +1,4 @@
-package br.loja.testes;
+package br.loja.utilidades;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.rules.Timeout;
 
-import br.loja.testes.rules.LoggingRule;
+import br.loja.utilidades.rules.LoggingRule;
 
 public class RulechainTest {
 	

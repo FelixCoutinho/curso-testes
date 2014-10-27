@@ -1,4 +1,4 @@
-package br.loja.testes.rules;
+package br.loja.utilidades.rules;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
