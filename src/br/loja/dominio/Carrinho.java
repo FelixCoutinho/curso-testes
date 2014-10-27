@@ -1,94 +1,53 @@
 package br.loja.dominio;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Carrinho {
-	
-	private TipoPagamento tipoPagamento;
-
-	public Carrinho() {
-	}
-
-	public Carrinho(String cep) {
-		this.cep = cep;
-	}
-
-	public Carrinho(List<Item> itens, String cep) {
-		this.itens = itens;
-		this.cep = cep;
-	}
 
 	private List<Item> itens = new ArrayList<Item>();
-	private String cep;
 
-	public Carrinho adicionar(Produto produto) {
-		Item item = new Item(produto);
-		if (this.itens.contains(item)) {
-			Item itemExistente = this.itens.get(this.itens.indexOf(item));
-			itemExistente.setQuantidade(itemExistente.getQuantidade() + 1);
-		} else {
-			this.itens.add(item);
-		}
-		return this;
-	}
+	public final List<Item> getItens() {
+		return new ArrayList<Item>(this.itens) {
+			private static final long serialVersionUID = 7936326982947661776L;
 
-	public List<Item> getItens() {
-		if (this.itens == null || this.itens.size() == 0) {
-			throw new RuntimeException("Seu carrinho está vazio!");
-		}
-		Collections.sort(itens, new Comparator<Item>() {
 			@Override
-			public int compare(Item item1, Item item2) {
-				return item1.getProduto().getPreco().compareTo(item2.getProduto().getPreco());
+			public boolean add(Item item) {
+				throw new RuntimeException("Não é permitido adicionar itens dessa forma.");
 			}
-		});
-		return itens;
+
+		};
 	}
 
-	public void setItens(List<Item> itens) {
-		this.itens = itens;
-	}
-
-	public Double getTotal() {
-		return getSubTotal() + this.getValorFrete();
-	}
-
-	public Double getSubTotal() {
-		Double valorTotal = 0.0;
+	public BigDecimal getSubTotal() {
+		BigDecimal valorTotal = BigDecimal.valueOf(0.0);
 		for (Item item : itens) {
-			valorTotal += item.getProduto().getPreco().doubleValue() * item.getQuantidade();
+			valorTotal = valorTotal
+					.add(item.getProduto().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade())));
 		}
 		return valorTotal;
 	}
 
-	public Double getValorFrete() {
-		if (this.cep != null && this.cep != "") {
-			return this.getSubTotal() * 0.10;
+	public BigDecimal getTotalValorFrete() {
+		BigDecimal valorTotal = BigDecimal.valueOf(0.0);
+		for (Item item : itens) {
+			valorTotal = valorTotal.add(item.getProduto().getValorFrete()
+					.multiply(BigDecimal.valueOf(item.getQuantidade())));
 		}
-		return 0.0;
+		return valorTotal;
 	}
 
-	public Boolean isVazio() {
-		return itens.isEmpty();
+	public BigDecimal getTotal() {
+		return this.getSubTotal().add(this.getTotalValorFrete());
 	}
 
-	public String getCep() {
-		return cep;
+	public void adicionarProduto(Produto produto) {
+		if (this.itens.contains(new Item(produto))) {
+			this.itens.get(this.itens.indexOf(new Item(produto))).setQuantidade(
+					this.itens.get(this.itens.indexOf(new Item(produto))).getQuantidade() + 1);
+		} else {
+			this.itens.add(new Item(produto));
+		}
 	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public TipoPagamento getTipoPagamento() {
-		return tipoPagamento;
-	}
-
-	public void setTipoPagamento(TipoPagamento tipoPagamento) {
-		this.tipoPagamento = tipoPagamento;
-	}
-
 }
