@@ -54,24 +54,8 @@ public class Produto {
 		this.preco = preco;
 	}
 
-	public BigDecimal getPercentualFrete() {
-		return percentualFrete;
-	}
-
-	public void setPercentualFrete(BigDecimal percentualFrete) {
-		this.percentualFrete = percentualFrete;
-	}
-
 	public BigDecimal getValorFrete(){
 		return preco.multiply(percentualFrete);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((sku == null) ? 0 : sku.hashCode());
-		return result;
 	}
 
 	@Override

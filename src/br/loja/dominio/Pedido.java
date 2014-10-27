@@ -31,7 +31,7 @@ public class Pedido {
 
 	@Column(name = "uid_correios")
 	private String uidCorreios;
-
+	
 	protected Pedido() {
 	}
 

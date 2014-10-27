@@ -15,10 +15,6 @@ public class Item {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	public Integer getQuantidade() {
 		return quantidade;
 	}
