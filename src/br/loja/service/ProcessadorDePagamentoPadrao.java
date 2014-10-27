@@ -6,9 +6,7 @@ public class ProcessadorDePagamentoPadrao implements ProcessadorDePagamento {
 
 	@Override
 	public void processarPagamento(Carrinho carrinho) {
-		if (!carrinho.isVazio()) {
-			
-		}
+		
 	}
 
 }
