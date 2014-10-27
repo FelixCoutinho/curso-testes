@@ -35,20 +35,8 @@ public class Produto {
 		this.setPreco(preco);
 	}
 
-	public String getSku() {
-		return sku;
-	}
-
 	public void setSku(String sku) {
 		this.sku = sku;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public BigDecimal getPreco() {
